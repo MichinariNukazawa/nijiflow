@@ -25,9 +25,9 @@ _MODEL_PATH = os.path.join(os.path.dirname(__file__), 'models', _MODEL_NAME)
 
 
 class Classifier(object):
-    def __init__(self):
+    def __init__(self, model_path=_MODEL_PATH):
         with tf.Graph().as_default() as graph:
-            with open(_MODEL_PATH, 'rb') as f:
+            with open(model_path, 'rb') as f:
                 graph_def = tf.GraphDef.FromString(f.read())
             tf.import_graph_def(graph_def, name='')
         self._graph = graph
